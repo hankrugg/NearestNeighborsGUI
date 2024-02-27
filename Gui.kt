@@ -137,23 +137,30 @@ class Gui() : JFrame() {
         val n = NearestNeighbors()
         n.loadData("src/main/kotlin/Iris.csv")
 
+        var results = "Invalid Input"
+
         // check for valid input
         if (!n.validateFloatInput(slength)) {
+            results = "Invalid Sepal Length"
             validInput = false
         } else if (!n.validateFloatInput(swidth)) {
+            results = "Invalid Sepal Width"
             validInput = false
         } else if (!n.validateFloatInput(plength)) {
+            results = "Invalid Petal Length"
             validInput = false
         } else if (!n.validateFloatInput(pwidth)) {
+            results = "Invalid Petal Width"
             validInput = false
         } else if (!n.validateIntInput(neighbors)) {
+            results = "Invalid Neighbors input"
             validInput = false
         } else if (n.data.size < neighbors.toInt()) {
+            results = "Invalid amount of neighbors"
             validInput = false
         }
 
 
-        var results = "Invalid Input"
         if (validInput) {
             results =
                 n.test(neighbors.toInt(), slength.toFloat(), swidth.toFloat(), plength.toFloat(), pwidth.toFloat())
